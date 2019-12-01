@@ -2,6 +2,9 @@ package org.oscar.algo.sort;
 
 import java.util.Arrays;
 
+/**
+ * @author huaying
+ */
 public class MergeSort {
 
     public static void sort(int[] a, int p, int r) {
@@ -9,11 +12,11 @@ public class MergeSort {
     }
 
     private static void sortInternally(int[] a, int p, int r) {
-        System.out.println(String.format("p -> %s, r -> %s, a -> %s", p, r, Arrays.toString(a)));
         if (p >= r) {
             return;
         }
-        int q = p + (r - p)/2;
+
+        int q = p + (r - p) / 2;
         sortInternally(a, p, q);
         sortInternally(a, q + 1, r);
 
@@ -22,18 +25,15 @@ public class MergeSort {
 
 
     private static void merge(int[] a, int p, int q, int r) {
-        System.out.println(String.format("Before merge: p -> %s, r -> %s, a -> %s", p, r, Arrays.toString(a)));
-        int[] temp = new int[r - p + 1];
-
         int i = p;
-        int j = q + 1;
+        int j = q +1;
         int k = 0;
-
+        int[] tmp = new int[r - p + 1];
         while (i <= q && j <= r) {
             if (a[i] <= a[j]) {
-                temp[k++] = a[i++];
+                tmp[k++] = a[i++];
             } else {
-                temp[k++] = a[j++];
+                tmp[k++] = a[j++];
             }
         }
 
@@ -48,11 +48,11 @@ public class MergeSort {
         }
 
         while (start <= end) {
-            temp[k++] = a[start++];
+            tmp[k++] = a[start++];
         }
 
-        for (int l = 0; l <= r-p; ++l) {
-            a[p+l] = temp[l];
+        for (int l = 0; l <= r - p; l++) {
+            a[p + l] = tmp[l];
         }
     }
 
